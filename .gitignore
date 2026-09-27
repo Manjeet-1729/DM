@@ -1,0 +1,21 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyc
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large generated artifacts (kept out of git; regenerate with `python main.py`)
+data/processed/*.joblib
+
+# Keep folder structure but ignore accidental extra logs if you rerun many times
+# (comment the next line out if you WANT to commit your logs as proof of runs)
+# logs/*.log

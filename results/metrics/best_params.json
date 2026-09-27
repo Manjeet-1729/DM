@@ -1,0 +1,19 @@
+{
+  "mlp_best_params": {
+    "hidden_layer_sizes": [
+      100,
+      50
+    ],
+    "activation": "relu",
+    "learning_rate_init": 0.001
+  },
+  "rf_best_params": {
+    "n_estimators": 200,
+    "max_depth": null,
+    "max_features": "sqrt"
+  },
+  "published_benchmark": {
+    "model": "SVM (Koklu & Ozkan, 2020, original paper)",
+    "accuracy": 0.9313
+  }
+}

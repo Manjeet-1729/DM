@@ -1,0 +1,203 @@
+23:44:46 | INFO    | Logging to F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\logs\run_20260925_234446.log
+23:44:46 | INFO    | ######################################################################
+23:44:46 | INFO    | CS660 - Data Mining for Decision Making | Dry Bean Classification
+23:44:46 | INFO    | Algorithms compared: MLP Neural Network vs Random Forest
+23:44:46 | INFO    | ######################################################################
+23:44:46 | INFO    | ======================================================================
+23:44:46 | INFO    | STAGE 1: DATA LOADING
+23:44:46 | INFO    | ======================================================================
+23:44:46 | INFO    | Dataset source:
+UCI Machine Learning Repository - Dry Bean Dataset (ID 602)
+https://archive.ics.uci.edu/dataset/602/dry+bean+dataset
+Koklu, M. and Ozkan, I.A. (2020), Multiclass Classification of Dry Beans Using Computer Vision and Machine Learning Techniques. Computers and Electronics in Agriculture, 174, 105507.
+23:44:50 | INFO    | Loaded raw data from: F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\data\raw\Dry_Bean_Dataset.xlsx
+23:44:50 | INFO    | Shape: 13611 rows x 17 columns
+23:44:50 | INFO    | Columns: ['Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength', 'AspectRation', 'Eccentricity', 'ConvexArea', 'EquivDiameter', 'Extent', 'Solidity', 'roundness', 'Compactness', 'ShapeFactor1', 'ShapeFactor2', 'ShapeFactor3', 'ShapeFactor4', 'Class']
+23:44:50 | INFO    | Total missing values: 0
+23:44:50 | INFO    | No missing-value imputation required (confirmed no nulls in raw data).
+23:44:50 | INFO    | Duplicate rows: 68
+23:44:50 | INFO    | Class distribution (target = 'Class'):
+23:44:50 | INFO    |   DERMASON  :  3546  (26.05%)
+23:44:50 | INFO    |   SIRA      :  2636  (19.37%)
+23:44:50 | INFO    |   SEKER     :  2027  (14.89%)
+23:44:50 | INFO    |   HOROZ     :  1928  (14.17%)
+23:44:50 | INFO    |   CALI      :  1630  (11.98%)
+23:44:50 | INFO    |   BARBUNYA  :  1322  ( 9.71%)
+23:44:50 | INFO    |   BOMBAY    :   522  ( 3.84%)
+23:44:50 | INFO    | Class imbalance ratio (largest/smallest class): 6.79x
+23:44:50 | INFO    | Dtype summary:
+23:44:50 | INFO    |   Area                : int64
+23:44:50 | INFO    |   Perimeter           : float64
+23:44:50 | INFO    |   MajorAxisLength     : float64
+23:44:50 | INFO    |   MinorAxisLength     : float64
+23:44:50 | INFO    |   AspectRation        : float64
+23:44:50 | INFO    |   Eccentricity        : float64
+23:44:50 | INFO    |   ConvexArea          : int64
+23:44:50 | INFO    |   EquivDiameter       : float64
+23:44:50 | INFO    |   Extent              : float64
+23:44:50 | INFO    |   Solidity            : float64
+23:44:50 | INFO    |   roundness           : float64
+23:44:50 | INFO    |   Compactness         : float64
+23:44:50 | INFO    |   ShapeFactor1        : float64
+23:44:50 | INFO    |   ShapeFactor2        : float64
+23:44:50 | INFO    |   ShapeFactor3        : float64
+23:44:50 | INFO    |   ShapeFactor4        : float64
+23:44:50 | INFO    |   Class               : str
+23:44:50 | INFO    | ======================================================================
+23:44:50 | INFO    | STAGE 2: DATASET HANDLING / PREPROCESSING
+23:44:50 | INFO    | ======================================================================
+23:44:50 | INFO    | Feature matrix X: (13611, 16)
+23:44:50 | INFO    | No missing values to impute (verified in data loading stage).
+23:44:50 | INFO    | No categorical feature columns present -> no one-hot encoding needed for X.
+23:44:50 | INFO    | Label-encoded target classes: {'BARBUNYA': 0, 'BOMBAY': 1, 'CALI': 2, 'DERMASON': 3, 'HOROZ': 4, 'SEKER': 5, 'SIRA': 6}
+23:44:50 | INFO    | Stratified train/test split (80/20), random_state=42
+23:44:50 | INFO    | Train set: 10888 rows | Test set: 2723 rows
+23:44:51 | INFO    | Applied StandardScaler (fit on train only, applied to test) -- required for MLP convergence; does not affect Random Forest's splits but is kept identical across both algorithms for a fair, reproducible comparison.
+23:44:51 | INFO    | Saved fitted scaler and label encoder to F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\data\processed
+23:44:51 | INFO    | ======================================================================
+23:44:51 | INFO    | STAGE 3a: SENSITIVITY ANALYSIS -- MLP (Neural Network)
+23:44:51 | INFO    | ======================================================================
+23:44:51 | INFO    | Using 5-fold cross-validation on the TRAINING set only.
+23:44:51 | INFO    | Varying: hidden_layer_sizes, activation function, learning_rate_init
+23:45:01 | INFO    |   [MLP] layers=(16,), activation=relu, lr=0.001                 -> CV accuracy = 0.9221 (+/-0.0070)  [10.2s]
+23:45:08 | INFO    |   [MLP] layers=(32,), activation=relu, lr=0.001                 -> CV accuracy = 0.9229 (+/-0.0089)  [7.3s]
+23:45:15 | INFO    |   [MLP] layers=(64,), activation=relu, lr=0.001                 -> CV accuracy = 0.9240 (+/-0.0070)  [7.2s]
+23:45:22 | INFO    |   [MLP] layers=(64, 32), activation=relu, lr=0.001              -> CV accuracy = 0.9298 (+/-0.0058)  [6.6s]
+23:45:29 | INFO    |   [MLP] layers=(100, 50), activation=relu, lr=0.001             -> CV accuracy = 0.9321 (+/-0.0049)  [7.0s]
+23:45:36 | INFO    |   [MLP] layers=(64, 32), activation=tanh, lr=0.001              -> CV accuracy = 0.9274 (+/-0.0074)  [6.7s]
+23:45:44 | INFO    |   [MLP] layers=(64, 32), activation=logistic, lr=0.001          -> CV accuracy = 0.9193 (+/-0.0048)  [8.3s]
+23:45:48 | INFO    |   [MLP] layers=(64, 32), activation=relu, lr=0.01               -> CV accuracy = 0.9280 (+/-0.0075)  [4.1s]
+23:45:56 | INFO    |   [MLP] layers=(64, 32), activation=relu, lr=0.0001             -> CV accuracy = 0.9156 (+/-0.0113)  [8.5s]
+23:46:03 | INFO    |   [MLP] layers=(100, 50, 25), activation=relu, lr=0.001         -> CV accuracy = 0.9292 (+/-0.0077)  [6.9s]
+23:46:03 | INFO    | BEST MLP CONFIG: layers=(100, 50), activation=relu, lr=0.001 -> 0.9321
+23:46:03 | INFO    | ======================================================================
+23:46:03 | INFO    | STAGE 3b: SENSITIVITY ANALYSIS -- Random Forest
+23:46:03 | INFO    | ======================================================================
+23:46:03 | INFO    | Using 5-fold cross-validation on the TRAINING set only.
+23:46:03 | INFO    | Varying: n_estimators, max_depth, max_features
+23:46:06 | INFO    |   [RF]  n_estimators=50, max_depth=None, max_features=sqrt      -> CV accuracy = 0.9245 (+/-0.0049)  [2.7s]
+23:46:10 | INFO    |   [RF]  n_estimators=100, max_depth=None, max_features=sqrt     -> CV accuracy = 0.9248 (+/-0.0038)  [4.4s]
+23:46:18 | INFO    |   [RF]  n_estimators=200, max_depth=None, max_features=sqrt     -> CV accuracy = 0.9253 (+/-0.0041)  [7.6s]
+23:46:29 | INFO    |   [RF]  n_estimators=300, max_depth=None, max_features=sqrt     -> CV accuracy = 0.9246 (+/-0.0046)  [11.0s]
+23:46:32 | INFO    |   [RF]  n_estimators=100, max_depth=5, max_features=sqrt        -> CV accuracy = 0.8891 (+/-0.0075)  [2.8s]
+23:46:35 | INFO    |   [RF]  n_estimators=100, max_depth=10, max_features=sqrt       -> CV accuracy = 0.9226 (+/-0.0058)  [3.4s]
+23:46:39 | INFO    |   [RF]  n_estimators=100, max_depth=20, max_features=sqrt       -> CV accuracy = 0.9251 (+/-0.0045)  [4.0s]
+23:46:43 | INFO    |   [RF]  n_estimators=100, max_depth=None, max_features=log2     -> CV accuracy = 0.9248 (+/-0.0038)  [4.1s]
+23:46:55 | INFO    |   [RF]  n_estimators=100, max_depth=None, max_features=None     -> CV accuracy = 0.9252 (+/-0.0047)  [11.9s]
+23:47:02 | INFO    |   [RF]  n_estimators=200, max_depth=15, max_features=sqrt       -> CV accuracy = 0.9247 (+/-0.0042)  [7.3s]
+23:47:02 | INFO    | BEST RF CONFIG: n_estimators=200, max_depth=None, max_features=sqrt -> 0.9253
+23:47:05 | INFO    | Saved plot -> F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\plots\mlp_sensitivity_analysis.png
+23:47:05 | INFO    | Saved plot -> F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\plots\rf_sensitivity_analysis.png
+23:47:05 | INFO    | ======================================================================
+23:47:05 | INFO    | STAGE 4: FINAL TRAINING + TEST-SET EVALUATION
+23:47:05 | INFO    | ======================================================================
+23:47:05 | INFO    | --- Baseline models (library default hyperparameters) ---
+23:47:09 | INFO    | [MLP (baseline)] Test Accuracy : 0.9258
+23:47:09 | INFO    | [MLP (baseline)] Macro Precision: 0.9384
+23:47:09 | INFO    | [MLP (baseline)] Macro Recall   : 0.9353
+23:47:09 | INFO    | [MLP (baseline)] Macro F1-score : 0.9366
+23:47:09 | INFO    | [MLP (baseline)] Inference time on test set: 0.008s
+23:47:09 | INFO    | [MLP (baseline)] Full classification report:
+              precision    recall  f1-score   support
+
+    BARBUNYA       0.94      0.89      0.91       265
+      BOMBAY       1.00      1.00      1.00       104
+        CALI       0.93      0.95      0.94       326
+    DERMASON       0.93      0.91      0.92       709
+       HOROZ       0.97      0.95      0.96       386
+       SEKER       0.94      0.96      0.95       406
+        SIRA       0.85      0.89      0.87       527
+
+    accuracy                           0.93      2723
+   macro avg       0.94      0.94      0.94      2723
+weighted avg       0.93      0.93      0.93      2723
+
+23:47:10 | INFO    | Saved plot -> F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\plots\confusion_matrix_MLP_(baseline).png
+23:47:11 | INFO    | [RandomForest (baseline)] Test Accuracy : 0.9207
+23:47:11 | INFO    | [RandomForest (baseline)] Macro Precision: 0.9355
+23:47:11 | INFO    | [RandomForest (baseline)] Macro Recall   : 0.9313
+23:47:11 | INFO    | [RandomForest (baseline)] Macro F1-score : 0.9333
+23:47:11 | INFO    | [RandomForest (baseline)] Inference time on test set: 0.162s
+23:47:11 | INFO    | [RandomForest (baseline)] Full classification report:
+              precision    recall  f1-score   support
+
+    BARBUNYA       0.94      0.89      0.92       265
+      BOMBAY       1.00      1.00      1.00       104
+        CALI       0.94      0.94      0.94       326
+    DERMASON       0.90      0.92      0.91       709
+       HOROZ       0.97      0.95      0.96       386
+       SEKER       0.94      0.96      0.95       406
+        SIRA       0.86      0.86      0.86       527
+
+    accuracy                           0.92      2723
+   macro avg       0.94      0.93      0.93      2723
+weighted avg       0.92      0.92      0.92      2723
+
+23:47:12 | INFO    | Saved plot -> F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\plots\confusion_matrix_RandomForest_(baseline).png
+23:47:12 | INFO    | --- Tuned MLP: {'hidden_layer_sizes': (100, 50), 'activation': 'relu', 'learning_rate_init': np.float64(0.001)} ---
+23:47:16 | INFO    | [MLP (tuned)] Test Accuracy : 0.9236
+23:47:16 | INFO    | [MLP (tuned)] Macro Precision: 0.9361
+23:47:16 | INFO    | [MLP (tuned)] Macro Recall   : 0.9348
+23:47:16 | INFO    | [MLP (tuned)] Macro F1-score : 0.9353
+23:47:16 | INFO    | [MLP (tuned)] Inference time on test set: 0.007s
+23:47:16 | INFO    | [MLP (tuned)] Full classification report:
+              precision    recall  f1-score   support
+
+    BARBUNYA       0.94      0.90      0.92       265
+      BOMBAY       1.00      1.00      1.00       104
+        CALI       0.93      0.95      0.94       326
+    DERMASON       0.93      0.91      0.92       709
+       HOROZ       0.96      0.95      0.96       386
+       SEKER       0.93      0.96      0.94       406
+        SIRA       0.86      0.88      0.87       527
+
+    accuracy                           0.92      2723
+   macro avg       0.94      0.93      0.94      2723
+weighted avg       0.92      0.92      0.92      2723
+
+23:47:16 | INFO    | Saved plot -> F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\plots\confusion_matrix_MLP_(tuned).png
+23:47:16 | INFO    | --- Tuned RandomForest: {'n_estimators': 200, 'max_depth': None, 'max_features': 'sqrt'} ---
+23:47:19 | INFO    | [RandomForest (tuned)] Test Accuracy : 0.9199
+23:47:19 | INFO    | [RandomForest (tuned)] Macro Precision: 0.9339
+23:47:19 | INFO    | [RandomForest (tuned)] Macro Recall   : 0.9306
+23:47:19 | INFO    | [RandomForest (tuned)] Macro F1-score : 0.9321
+23:47:19 | INFO    | [RandomForest (tuned)] Inference time on test set: 0.173s
+23:47:19 | INFO    | [RandomForest (tuned)] Full classification report:
+              precision    recall  f1-score   support
+
+    BARBUNYA       0.93      0.89      0.91       265
+      BOMBAY       1.00      1.00      1.00       104
+        CALI       0.94      0.94      0.94       326
+    DERMASON       0.91      0.92      0.91       709
+       HOROZ       0.97      0.95      0.96       386
+       SEKER       0.94      0.96      0.95       406
+        SIRA       0.86      0.85      0.86       527
+
+    accuracy                           0.92      2723
+   macro avg       0.93      0.93      0.93      2723
+weighted avg       0.92      0.92      0.92      2723
+
+23:47:19 | INFO    | Saved plot -> F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\plots\confusion_matrix_RandomForest_(tuned).png
+23:47:19 | INFO    | --- Comparison against published benchmark ---
+23:47:19 | INFO    | Published: SVM (Koklu & Ozkan, 2020, original paper) = 0.9313
+23:47:19 | INFO    |   MLP (tuned): 0.9236  (-0.77 pts vs published SVM)
+23:47:19 | INFO    |   RandomForest (tuned): 0.9199  (-1.14 pts vs published SVM)
+23:47:19 | INFO    | Random Forest feature importances (top 5):
+23:47:19 | INFO    |   ShapeFactor3        : 0.1066
+23:47:19 | INFO    |   Perimeter           : 0.0896
+23:47:19 | INFO    |   Compactness         : 0.0886
+23:47:19 | INFO    |   ShapeFactor1        : 0.0838
+23:47:19 | INFO    |   MinorAxisLength     : 0.0803
+23:47:20 | INFO    | Saved plot -> F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\plots\rf_feature_importance.png
+23:47:20 | INFO    | Saved plot -> F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\plots\final_comparison.png
+23:47:20 | INFO    | Saved final metrics table and best params to F:\7th Sem\DM\dry-bean-classification\dry-bean-classification\results\metrics
+23:47:20 | INFO    | ######################################################################
+23:47:20 | INFO    | PIPELINE COMPLETE in 2.6 minutes
+23:47:20 | INFO    | Final results:
+23:47:20 | INFO    | 
+                  model  accuracy  macro_precision  macro_recall  macro_f1  inference_time_s
+         MLP (baseline)  0.925817         0.938397      0.935340  0.936632          0.008067
+RandomForest (baseline)  0.920676         0.935481      0.931311  0.933258          0.161570
+            MLP (tuned)  0.923614         0.936125      0.934800  0.935284          0.007446
+   RandomForest (tuned)  0.919941         0.933855      0.930563  0.932108          0.173181
+23:47:20 | INFO    | ######################################################################

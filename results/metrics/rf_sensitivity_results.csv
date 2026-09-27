@@ -1,0 +1,11 @@
+algorithm,config,n_estimators,max_depth,max_features,mean_cv_accuracy,std_cv_accuracy,train_time_s
+RandomForest,"n_estimators=50, max_depth=None, max_features=sqrt",50,None,sqrt,0.9245043241535494,0.0048601176673483005,2.541161298751831
+RandomForest,"n_estimators=100, max_depth=None, max_features=sqrt",100,None,sqrt,0.9247798906085956,0.003784665100726002,4.062729120254517
+RandomForest,"n_estimators=200, max_depth=None, max_features=sqrt",200,None,sqrt,0.9253307282538501,0.0041216873197741045,7.417759656906128
+RandomForest,"n_estimators=300, max_depth=None, max_features=sqrt",300,None,sqrt,0.9245958562532663,0.00461427209141007,10.629885196685791
+RandomForest,"n_estimators=100, max_depth=5, max_features=sqrt",100,5,sqrt,0.889053182680777,0.007516809389480202,2.310028076171875
+RandomForest,"n_estimators=100, max_depth=10, max_features=sqrt",100,10,sqrt,0.9225755276909909,0.005787902979818868,3.231144666671753
+RandomForest,"n_estimators=100, max_depth=20, max_features=sqrt",100,20,sqrt,0.9250553727022597,0.004526015960296367,3.6680667400360107
+RandomForest,"n_estimators=100, max_depth=None, max_features=log2",100,None,log2,0.9247798906085956,0.003784665100726002,3.7635326385498047
+RandomForest,"n_estimators=100, max_depth=None, max_features=None",100,None,None,0.9252386056244577,0.004725575933462357,12.18996286392212
+RandomForest,"n_estimators=200, max_depth=15, max_features=sqrt",200,15,sqrt,0.9246876836178209,0.004239181341309347,6.979110479354858
